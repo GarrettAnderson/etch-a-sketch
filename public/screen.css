@@ -21,6 +21,13 @@ body {
       animation: shake 0.5s linear 1;
     }
 
+    button {
+      background-color: #D60289;
+      border: none !important;
+      padding: 12px 12px;
+      color: white;
+    }
+
     @keyframes shake {
 
       10%,
