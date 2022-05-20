@@ -30,8 +30,30 @@
   ctx.stroke()
 // write a draw function
 
+function draw(options){
+  console.log(options)
+}
+
+  // Destructuring the above:
+      // function draw({ key }) {
+      //   console.log(options)
+      // }
+
 // write a handler for the keys
+
+function handleKey(e) {
+  if(e.key.includes('Arrow')){
+      e.preventDefault() // so page doesn't scroll
+      console.log(e.key)
+      draw({key: e.key})
+  }
+}
 
 // clear/ shake function
 
 // listen for arrow keys
+
+window.addEventListener('keydown', handleKey)
+window.addEventListener('keyup', handleKey)
+window.addEventListener('keyright', handleKey)
+window.addEventListener('keyleft', handleKey)
