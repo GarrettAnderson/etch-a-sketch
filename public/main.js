@@ -17,16 +17,16 @@
   // the same properties on our canvas:
   // const { width, height } = canvas;
 
-  let x = Math.floor(Math.random() * 100)
-  let y = Math.floor(Math.random() * 100)
+  let x = Math.floor(Math.random() * width)
+  let y = Math.floor(Math.random() * height)
 
   ctx.lineJoin = 'round'
   ctx.lineCap = 'round'
   ctx.lineWidth = 10
 
   ctx.beginPath()
-  ctx.moveTo(200, 200)
-  ctx.lineTo(200, 200)
+  ctx.moveTo(x, y)
+  ctx.lineTo(x, y)
   ctx.stroke()
 // write a draw function
 
