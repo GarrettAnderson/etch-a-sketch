@@ -2,6 +2,7 @@
 
   // The canvas
 
+  const MOVE_AMOUT = 10
   const canvas = document.querySelector('#etch-a-sketch')
   const shakeBtn = document.querySelector('.shake')
   const ctx = canvas.getContext('2d')
@@ -17,21 +18,48 @@
   // the same properties on our canvas:
   // const { width, height } = canvas;
 
+  let huelk
   let x = Math.floor(Math.random() * width)
   let y = Math.floor(Math.random() * height)
 
   ctx.lineJoin = 'round'
   ctx.lineCap = 'round'
-  ctx.lineWidth = 10
+  ctx.lineWidth = MOVE_AMOUT
 
+  let hue = 0
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
   ctx.beginPath()
   ctx.moveTo(x, y)
   ctx.lineTo(x, y)
   ctx.stroke()
 // write a draw function
 
-function draw(options){
-  console.log(options)
+function draw({key}){
+  console.log(key)
+  hue += 1
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+
+  switch (key) {
+    case 'ArrowUp':
+      y -= MOVE_AMOUT
+      break
+      // default:
+      // break
+    case 'ArrowDown':
+      y += MOVE_AMOUT
+      break
+    case 'ArrowLeft':
+      x -= MOVE_AMOUT
+      break
+    case 'ArrowRight':
+      x += MOVE_AMOUT
+      break
+  }
+
+  ctx.lineTo(x, y)
+  ctx.stroke()
 }
 
   // Destructuring the above:
@@ -50,6 +78,20 @@ function handleKey(e) {
 }
 
 // clear/ shake function
+
+function shake() {
+  console.log('shake button clicked')
+  canvas.classList.add('shake')
+  ctx.clearRect(0, 0, width, height)
+  canvas.addEventListener('animationend', function(){
+    canvas.classlist.remove('shake')
+  },
+  {
+    once: true
+  })
+}
+
+shakeBtn.addEventListener('click', shake)
 
 // listen for arrow keys
 
